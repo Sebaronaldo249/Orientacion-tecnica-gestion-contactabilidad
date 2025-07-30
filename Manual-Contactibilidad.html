@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orientación Técnica para la Gestión de la Contactabilidad de Usuarios</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F9F9F9;
+            color: #3A3A3A;
+        }
+        .section-card {
+            border-radius: 1rem; /* Más redondeado */
+            padding: 2.5rem; /* Más padding */
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.05); /* Sombra más pronunciada */
+            border: 1px solid #e2e8f0;
+            margin-bottom: 3rem; /* Más espacio entre secciones */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .section-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px -5px rgb(0 0 0 / 0.15), 0 6px 8px -3px rgb(0 0 0 / 0.08);
+        }
+        /* Colores de fondo para las secciones */
+        .bg-light-blue { background-color: #E0F7FA; } /* Un azul muy claro */
+        .bg-light-yellow { background-color: #FFFBEB; } /* Un amarillo muy claro */
+        .bg-light-green { background-color: #E6FFFA; } /* Un verde muy claro */
+        .bg-light-pink { background-color: #FFF0F5; } /* Un rosa muy claro */
+        .bg-light-purple { background-color: #F3E5F5; } /* Un morado muy claro, cambiado a gris claro */
+        .bg-light-orange { background-color: #FFF3E0; } /* Un naranja muy claro */
+
+        /* Nuevo color para la sección de monitoreo y seguimiento */
+        .bg-monitoreo-color { background-color: #F5F5F5; }
+
+        /* Nuevo color para el fondo del encabezado */
+        .bg-header-color { background-color: #F0F8FF; } /* Un azul muy claro, casi blanco */
+
+        /* Colores para el glosario */
+        .bg-glossary-color-1 { background-color: #E6F7FF; } /* Azul claro */
+        .bg-glossary-color-2 { background-color: #FFF8E1; } /* Amarillo muy claro */
+        .bg-glossary-color-3 { background-color: #E8F5E9; } /* Verde muy claro */
+        .bg-glossary-color-4 { background-color: #FCE4EC; } /* Rosa muy claro */
+        .bg-glossary-color-5 { background-color: #EDE7F6; } /* Morado muy claro */
+        .bg-glossary-color-6 { background-color: #FFECB3; } /* Naranja claro */
+        .bg-glossary-color-7 { background-color: #E1F5FE; } /* Otro azul claro */
+        .bg-glossary-color-8 { background-color: #FFFDE7; } /* Otro amarillo muy claro */
+        .bg-glossary-color-9 { background-color: #F1F8E9; } /* Otro verde muy claro */
+        .bg-glossary-color-10 { background-color: #F8BBD0; } /* Rosa un poco más fuerte */
+        .bg-glossary-color-11 { background-color: #D1C4E9; } /* Morado un poco más fuerte */
+        .bg-glossary-color-12 { background-color: #FFE0B2; } /* Otro naranja claro */
+        .bg-glossary-color-13 { background-color: #BBDEFB; } /* Azul medio */
+
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 3rem;
+            padding-left: 4rem; /* Más espacio para el marcador */
+            border-left: 4px solid #4ECDC4;
+        }
+        .timeline-item:last-child {
+            border-left: 4px solid transparent;
+        }
+        .timeline-marker {
+            position: absolute;
+            left: -18px; /* Ajustado para marcador más grande */
+            top: 0;
+            width: 36px; /* Marcador más grande */
+            height: 36px; /* Marcador más grande */
+            border-radius: 50%;
+            background-color: #4ECDC4;
+            border: 5px solid #F9F9F9; /* Borde más grueso */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.25rem; /* Número más grande */
+        }
+        .table-container {
+            overflow-x: auto;
+            border-radius: 0.75rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 1rem; /* Más padding */
+            text-align: left;
+            vertical-align: top; /* Alineación superior para contenido largo */
+        }
+        th {
+            background-color: #f1f5f9;
+            font-weight: 700;
+            color: #3A3A3A;
+            position: sticky; /* Sticky headers for better UX on scroll */
+            top: 0;
+            z-index: 10;
+        }
+        .icon-text-pair {
+            display: flex;
+            align-items: flex-start; /* Alinea los elementos al inicio (parte superior) */
+            margin-bottom: 0.5rem;
+        }
+        .icon-text-pair span {
+            font-size: 1.5rem; /* Tamaño de emoji en listas */
+            margin-right: 0.75rem;
+            flex-shrink: 0; /* Evita que el emoji se encoja */
+            line-height: 1.5; /* Ajusta la altura de línea para alinear con el texto */
+        }
+        .icon-text-pair p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .sticky-nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: #000000; /* Fondo negro */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .sticky-nav a {
+            padding: 1rem 1.25rem;
+            display: block;
+            font-weight: 600;
+            color: #FFFFFF; /* Texto blanco para contraste */
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .sticky-nav a:hover {
+            background-color: #555555; /* Un tono más claro de oscuro al pasar el ratón */
+            color: #FFFFFF;
+        }
+
+        /* Alineación de números en listas ordenadas */
+        ol li {
+            display: flex; /* Usa flexbox para alinear el número y el contenido */
+            align-items: flex-start; /* Alinea los elementos al inicio (parte superior) */
+            margin-bottom: 0.75rem; /* Espacio entre elementos de la lista */
+        }
+        ol li::marker {
+            font-weight: bold; /* Hace el número más visible */
+            margin-right: 0.5rem; /* Espacio entre el número y el texto */
+        }
+        ol li p {
+            margin-top: 0; /* Elimina el margen superior predeterminado del párrafo dentro del li */
+            margin-bottom: 0; /* Elimina el margen inferior predeterminado del párrafo dentro del li */
+        }
+
+        /* Estilo para las listas con viñetas de círculo negro explícitas */
+        .custom-black-bullet {
+            list-style: none; /* Elimina la viñeta predeterminada del navegador/Tailwind */
+            padding-left: 0; /* Elimina el padding predeterminado de la lista */
+        }
+
+        .custom-black-bullet li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .custom-black-bullet li::before {
+            content: '•'; /* Inserta el carácter de viñeta de círculo negro */
+            color: black; /* Asegura que la viñeta sea negra */
+            font-size: 1.2em; /* Hace la viñeta un poco más grande */
+            margin-right: 0.75rem; /* Espacio entre la viñeta y el texto */
+            flex-shrink: 0; /* Evita que la viñeta se encoja */
+            line-height: inherit; /* Alinea la viñeta con la línea de texto */
+        }
+
+        .custom-black-bullet li p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        /* Estilo para las listas con viñetas cuadradas */
+        .list-square {
+            list-style: none; /* Elimina la viñeta predeterminada */
+            padding-left: 0; /* Elimina el padding predeterminado */
+        }
+
+        .list-square li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.25rem; /* Espacio entre elementos de la lista */
+        }
+
+        .list-square li::before {
+            content: '▪'; /* Inserta el carácter de viñeta cuadrada */
+            color: #3A3A3A; /* Color de la viñeta */
+            font-size: 1em; /* Tamaño de la viñeta */
+            margin-right: 0.5rem; /* Espacio entre la viñeta y el texto */
+            flex-shrink: 0; /* Evita que la viñeta se encoja */
+            line-height: inherit; /* Alinea la viñeta con la línea de texto */
+        }
+
+        /* Custom indentation for the D. OPCIONES DE RESPUESTA Y FLUJOS section */
+        .script-flow-content ol,
+        .script-flow-content ul {
+            list-style: none; /* Remove default markers */
+            margin: 0; /* Remove default margins */
+            padding: 0; /* Remove default padding */
+        }
+
+        .script-flow-content ol {
+            counter-reset: item;
+        }
+
+        .script-flow-content ol > li {
+            position: relative;
+            margin-bottom: 1.5rem; /* Increased spacing for main list items */
+            padding-left: 2.5rem; /* Space for the number and text */
+            text-align: left; /* Ensure text aligns left within its padding */
+        }
+
+        .script-flow-content ol > li::before {
+            content: counter(item) ".";
+            counter-increment: item;
+            position: absolute;
+            left: 0; /* Position the number at the start of the li's content area */
+            font-weight: bold;
+            width: 2rem; /* Fixed width for the number to prevent overlap with text */
+            text-align: right; /* Align the number to the right within its width */
+            top: 0; /* Align with the top of the text */
+        }
+
+        /* Nested unordered lists */
+        .script-flow-content ul {
+            margin-top: 0.75rem; /* Space above nested list */
+            margin-bottom: 0.75rem; /* Space below nested list */
+            padding-left: 1.5rem; /* Indent the entire nested list */
+        }
+
+        .script-flow-content ul li {
+            position: relative;
+            margin-bottom: 1rem; /* Increased spacing between nested list items */
+            padding-left: 1.5rem; /* Space for the bullet and text */
+            text-align: left;
+        }
+
+        .script-flow-content ul li::before {
+            position: absolute;
+            left: 0; /* Position the bullet at the start of the li's content area */
+            top: 0.2em; /* Adjust vertically to center with text */
+        }
+
+        /* Specific bullet for deeper nested unordered lists */
+        .script-flow-content ul li::before {
+            content: '•'; /* Default bullet for all unordered lists */
+            color: black;
+            font-size: 1.2em;
+        }
+
+        .script-flow-content ul ul li::before {
+            content: '▪'; /* Square bullet for second level nested unordered list */
+            color: #3A3A3A;
+            font-size: 1em;
+        }
+
+        .script-flow-content ul ul ul li::before {
+            content: '▪'; /* Keep square for third level as well */
+            color: #3A3A3A;
+            font-size: 1em;
+        }
+
+        /* Ensure paragraphs within list items don't add extra margin */
+        .script-flow-content li p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        /* Accordion styles */
+        .accordion-header {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid rgba(0,0,0,0.1); /* Separator for header */
+        }
+        .accordion-header h2, .accordion-header h3 {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+        }
+        .accordion-header.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 2000px; /* Large enough to contain content */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .accordion-content.collapsed {
+            max-height: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="sticky-nav">
+        <nav class="container mx-auto flex flex-wrap justify-center text-sm md:text-base">
+            <a href="#introduction" class="hover:bg-blue-50">Introducción</a>
+            <a href="#objectives" class="hover:bg-blue-50">Objetivos</a>
+            <a href="#process-overview" class="hover:bg-blue-50">Proceso General</a>
+            <a href="#vinculacion" class="hover:bg-blue-50">Vinculación</a>
+            <a href="#monitoreo" class="hover:bg-blue-50">Monitoreo</a>
+            <a href="#agendamiento" class="hover:bg-blue-50">Agendamiento</a>
+            <a href="#post-atencion" class="hover:bg-blue-50">Post Atención</a>
+            <a href="#no-contactability" class="hover:bg-blue-50">No Contactabilidad</a>
+            <a href="#channels-matrix" class="hover:bg-blue-50">Canales</a>
+        </nav>
+    </div>
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-16 bg-header-color rounded-lg shadow-lg p-8">
+            <div class="mb-6">
+                <p class="text-xl md:text-2xl font-bold text-gray-700">Ministerio de Salud</p>
+                <p class="text-lg md:text-xl font-semibold text-gray-600">Gobierno de Chile</p>
+                <div class="w-24 h-1 bg-[#4ECDC4] mx-auto mt-3 rounded-full"></div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-gray-800 mb-4 leading-tight">Orientación Técnica para la Gestión de la Contactabilidad de Usuarios</h1>
+            <p class="text-xl md:text-2xl font-semibold text-[#FF6B6B] leading-relaxed">Guía Esencial para Establecimientos de Mediana y Alta Complejidad de la Red de Salud Pública</p>
+        </header>
+
+        <section id="introduction" class="section-card bg-light-blue">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#45B7D1]">💡</span> Introducción: Un Cambio de Paradigma en la Contactabilidad
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    Históricamente, la contactabilidad en el sistema de salud se ha centrado limitadamente en el agendamiento de citas. Esta visión restringida ha llevado a una desactualización crónica de la información de contacto de los usuarios, generando una carga administrativa considerable, prolongando los tiempos de espera y, en última instancia, disminuyendo la eficiencia general del sistema de salud.
+                </p>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    Esta orientación técnica propone una transformación fundamental: la gestión de la contactabilidad debe evolucionar hacia una <strong>estrategia transversal, proactiva y continua</strong>. Su propósito es mucho más amplio que la simple notificación de citas; busca establecer un acompañamiento constante para el usuario a lo largo de todo su recorrido asistencial. Esto no solo facilita su tránsito por la red de salud, sino que también optimiza la adherencia a los tratamientos, eleva la satisfacción del usuario y fortalece su vinculación con la red.
+                </p>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    El presente documento es una herramienta clave para mejorar la eficiencia y la trazabilidad del usuario desde la referencia hasta la contrarreferencia. Para ello, se enfoca en la estandarización y optimización de la gestión de la contactabilidad, lo que incluye la implementación de <strong>múltiples canales de comunicación</strong> y la estandarización de los datos necesarios para una gestión de contactos eficaz.
+                </p>
+            </div>
+        </section>
+
+        <section id="objectives" class="section-card bg-light-yellow">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FED766]">🎯</span> Objetivos Clave: Hacia una Contactabilidad Integral
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">✨</span> Objetivo General
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    Instalar un modelo de contactabilidad que sea <strong>permanente en el tiempo, dinámico y bidireccional</strong> con todos los usuarios que demandan una prestación de salud. Esto busca fortalecer el vínculo y asegurar la atención continua de sus necesidades, contribuyendo directamente a la continuidad de su atención y a la optimización de la gestión de las listas de espera.
+                </p>
+                
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">✅</span> Objetivos Específicos
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="proceso estándar">⚙️</span>
+                            <p><strong>Establecer un Proceso Estándar:</strong> Definir un proceso de contactabilidad uniforme que contribuya a mantener el vínculo con los usuarios durante todo el periodo de espera por una prestación de salud.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="comunicación bidireccional">💬</span>
+                            <p><strong>Desarrollar Modelos de Trabajo Bidireccionales:</strong> Crear pautas para una comunicación continua y de doble vía con los usuarios a lo largo de todo el proceso de referencia y contrarreferencia en la red asistencial.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="optimizar eficiencia">🚀</span>
+                            <p><strong>Optimizar la Eficiencia:</strong> Mejorar la eficacia de los procesos de contactabilidad mediante la implementación de la <strong>multicanalidad</strong>, lo que permitirá una gestión más fluida y efectiva de las interacciones con los usuarios.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mejorar información">📊</span>
+                            <p><strong>Mejorar la Disponibilidad de Información:</strong> Incrementar la accesibilidad de datos relevantes para la toma de decisiones clínicas y administrativas, a través de un sistema de contactabilidad multicanal integrado.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="scope" class="section-card bg-light-green">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#4ECDC4]">🌐</span> Alcance: ¿A Quién Va Dirigida Esta Orientación?
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    Este documento es de carácter <strong>interno</strong> y está específicamente diseñado para:
+                </p>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="profesionales de la salud">👩‍⚕️</span>
+                            <p><strong>Profesionales, Técnicos y Administrativos:</strong> Aquellos directamente encargados de gestionar los procesos clínicos y administrativos relacionados con la contactabilidad y la vinculación con usuarios.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="gestores de trazabilidad">🔗</span>
+                            <p><strong>Personal Clave en Trazabilidad:</strong> Todos aquellos que necesiten aplicar la trazabilidad como parte esencial del proceso de contactabilidad de los usuarios en el flujo de Referencia y Contrarreferencia en Red.</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-6 text-lg">
+                    El alcance se limita a los <strong>establecimientos de mediana y alta complejidad</strong> de la red de salud pública.
+                </p>
+
+                <h3 class="text-2xl font-semibold text-[#4ECDC4] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">📱</span> La Importancia de la Contactabilidad Multicanal
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    La contactabilidad en salud debe ser un proceso <strong>flexible y evolutivo</strong>, diseñado para responder eficazmente a las necesidades concretas de las personas y de la Red Asistencial. La <strong>multicanalidad</strong> —que incluye modalidades presenciales, a distancia sincrónicas (en tiempo real) y asincrónicas (con retardo)— es un pilar fundamental. Su implementación garantiza la accesibilidad y la coherencia de la información, permitiendo a los usuarios interactuar con el sistema a través del canal que mejor se adapte a sus preferencias y circunstancias.
+                </p>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    Es crucial que los sistemas de gestión telefónica, en particular, cumplan con requisitos mínimos de acción y registro, asegurando una <strong>trazabilidad completa</strong> y la aplicación de <strong>protocolos estandarizados</strong>. Para lograr una estrategia multicanal efectiva, es indispensable contar con <strong>herramientas tecnológicas</strong> que permitan la integración completa de toda la información generada desde las diversas fuentes de comunicación.
+                </p>
+            </div>
+        </section>
+
+        <section id="glossary" class="section-card bg-light-pink">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FF6B6B]">📚</span> Glosario y Conceptos Relevantes: El Lenguaje de la Contactabilidad
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-glossary-color-1 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Bidireccional ↔️</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Comunicación que fluye en dos direcciones entre los establecimientos de la Red Asistencial y los usuarios, potenciando un intercambio equitativo de información y retroalimentación.</dd>
+                    </div>
+                    <div class="bg-glossary-color-2 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Caracterización de usuario 🧑‍🔬</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Conjunto de características específicas de cada usuario (sociodemográficas, estado de salud, psicológicas, emocionales) que influyen en su experiencia durante la espera, permitiendo adaptar servicios y estrategias de comunicación.</dd>
+                    </div>
+                    <div class="bg-glossary-color-3 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Contactabilidad 📞</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Conjunto de acciones de comunicación entre el establecimiento de salud y el usuario para ubicarlo, vincularlo y acompañarlo durante su tránsito por el sistema de salud.</dd>
+                    </div>
+                    <div class="bg-glossary-color-4 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">COVICOM (Compromiso de Vinculación y Comunicación) 🤝</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Registro y constancia escrita de la información comunicada a los usuarios, explicitando su responsabilidad en la gestión de contacto y fomentando su compromiso por mantener información vigente.</dd>
+                    </div>
+                    <div class="bg-glossary-color-5 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Datos de contacto 📝</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Datos personales del usuario o su representante, incluyendo nombre completo (registral y social), RUN, dirección, correo electrónico y números de teléfono.</dd>
+                    </div>
+                    <div class="bg-glossary-color-6 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Gestión de la espera ⏳</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Proceso centrado en acompañar y mantener informados a los usuarios sobre los detalles clínicos y administrativos de su proceso de atención, identificando y mitigando riesgos potenciales.</dd>
+                    </div>
+                    <div class="bg-glossary-color-7 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Inteligencia Artificial (IA) 🤖</dt>
+                        <dd class="ml-0 text-gray-700 text-base">En contactabilidad, implica emplear sistemas automatizados y algoritmos para facilitar y mejorar la comunicación entre los establecimientos y los usuarios.</dd>
+                    </div>
+                    <div class="bg-glossary-color-8 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Multicanalidad 📲</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Utilización de todos los canales de comunicación disponibles (llamadas telefónicas, correos electrónicos, mensajería instantánea, etc.) para interactuar con los usuarios.</dd>
+                    </div>
+                    <div class="bg-glossary-color-9 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Portal paciente 🖥️</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Espacio digital centrado en la persona donde los usuarios pueden acceder y compartir su información de salud de forma segura y confidencial, con alta personalización y bidireccionalidad comunicacional.</dd>
+                    </div>
+                    <div class="bg-glossary-color-10 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Script 📜</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Texto o guion diseñado para ser utilizado en cada evento de contactabilidad, con el objetivo de recopilar información detallada y relevante para caracterizar al usuario.</dd>
+                    </div>
+                    <div class="bg-glossary-color-11 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Trazabilidad 📍</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Capacidad de registrar y seguir el historial de interacciones y eventos de contactabilidad con un usuario a lo largo de su proceso de atención.</dd>
+                    </div>
+                    <div class="bg-glossary-color-12 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Ubicable 🗺️</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Capacidad de la Red Asistencial de ubicar y mantener actualizada la información de contacto del usuario a lo largo de su trayecto de atención.</dd>
+                    </div>
+                    <div class="bg-glossary-color-13 p-5 rounded-lg shadow-sm border border-gray-200">
+                        <dt class="font-bold text-[#FF6B6B] text-xl mb-2">Vincular 🔗</dt>
+                        <dd class="ml-0 text-gray-700 text-base">Proceso de establecer y mantener conexiones bidireccionales entre los usuarios y la Red Asistencial, facilitando la comunicación fluida de información relevante.</dd>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="process-overview" class="section-card bg-monitoreo-color">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#45B7D1]">🔄</span> Proceso General para la Gestión de la Contactabilidad
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    Un proceso óptimo de contactabilidad requiere una comunicación bidireccional integral en todas las fases de la gestión clínica y administrativa. Se ha estructurado en <strong>cuatro instancias distintas (subprocesos)</strong> para garantizar la continuidad de la atención y mejorar la experiencia del usuario. Antes de iniciar la vinculación, se recomienda una búsqueda ampliada de información de contacto en bases de datos estatales. Una vez recopilada, se procede a las siguientes etapas:
+                </p>
+                <div class="max-w-4xl mx-auto">
+                    <div class="timeline-item">
+                        <div class="timeline-marker">1</div>
+                        <h3 class="text-xl font-bold text-[#FF6B6B] mb-2">Vinculación 🤝</h3>
+                        <p class="text-gray-600 text-lg">Contacto inicial para establecer el vínculo con el usuario, optimizar recursos y mantener registros actualizados. Los no ubicados inician el proceso de gestión de no contactabilidad.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">2</div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Monitoreo y Seguimiento 📈</h3>
+                        <p class="text-gray-600 text-lg">Comunicación continua y bidireccional para apoyar, resolver dudas y recopilar información, asegurando que el usuario se sienta acompañado y detectando riesgos.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">3</div>
+                        <h3 class="text-xl font-bold text-[#4ECDC4] mb-2">Agendamiento y Cita 🗓️</h3>
+                        <p class="text-gray-600 text-lg">Coordinación de prestaciones, gestión de recursos y medidas para asegurar la asistencia. En caso de inasistencia, se sigue el flujo de reprogramación o egreso.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">4</div>
+                        <h3 class="text-xl font-bold text-[#45B7D1] mb-2">Post Atención ✅</h3>
+                        <p class="text-gray-600 text-lg">Seguimiento tras la prestación para resolver dudas, verificar indicaciones, gestionar continuidad del cuidado y medir la satisfacción del usuario.</p>
+                    </div>
+                </div>
+                <p class="text-gray-700 leading-relaxed mt-6 text-lg">
+                    De forma transversal, es fundamental recopilar la información necesaria en cada interacción para avanzar en los procesos administrativos y asistenciales, manteniendo actualizados los datos de contacto y utilizando escalas de evaluación para caracterizar a las personas.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECCIONES DE PROFUNDIZACIÓN -->
+
+        <section id="vinculacion" class="section-card bg-light-orange">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FF6B6B]">🤝</span> 1. Profundizando en la Vinculación: El Primer Paso Crucial
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    La <strong>vinculación</strong> es la piedra angular de una gestión de contactabilidad efectiva. Representa la <strong>primera interacción formal</strong> entre el establecimiento de salud y el usuario en el contexto de una prestación pendiente. Su éxito sienta las bases para todo el recorrido del paciente en el sistema.
+                </p>
+
+                <h3 class="text-2xl font-semibold text-[#FF6B6B] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">🎯</span> Objetivos Detallados de la Vinculación
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="conexión inicial">🔗</span>
+                            <p><strong>Establecer una Conexión Inicial Sólida:</strong> Crear un canal de comunicación efectivo para informar al usuario sobre su estado en la lista de espera y los próximos pasos.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="optimización de recursos">💰</span>
+                            <p><strong>Optimizar la Utilización de Recursos Asistenciales:</strong> Confirmar la necesidad real de la prestación para evitar citas perdidas, reducir la duplicidad de atenciones y asegurar que los recursos se asignen a quienes realmente los requieren.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="actualización de datos">🔄</span>
+                            <p><strong>Recopilar y Actualizar Datos de Contacto:</strong> Obtener y verificar la información más reciente del usuario o de su representante legal, incluyendo números de teléfono, correos electrónicos y direcciones, así como sus preferencias de canal de comunicación.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="identificación de no ubicables">🔍</span>
+                            <p><strong>Identificar Tempranamente a Usuarios No Ubicables:</strong> Detectar aquellos casos en los que no se logra establecer contacto para activar el protocolo de "Gestión de la No Contactabilidad" de manera oportuna.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-[#FF6B6B] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">⚙️</span> Acciones Clave en el Proceso de Vinculación
+                </h3>
+                <div>
+                    <ol class="list-decimal list-inside text-gray-700 leading-relaxed space-y-4 text-lg">
+                        <li>
+                            <p><strong>Búsqueda Ampliada de Información (Pre-contacto):</strong> Antes de realizar el primer intento de contacto, es altamente recomendable realizar una búsqueda exhaustiva de la información del usuario en diversas bases de datos. Esto puede incluir registros internos del establecimiento, bases de datos estatales (si aplica y con las debidas autorizaciones), o cualquier otra fuente que pueda proporcionar datos de contacto completos y actualizados.</p>
+                        </li>
+                        <li>
+                            <p><strong>Primer Intento de Contacto:</strong> Utilizar los canales de comunicación definidos y disponibles para el establecimiento (ej. llamado telefónico, envío de correo electrónico, mensajería instantánea) para intentar establecer el primer contacto con el usuario o su representante.</p>
+                        </li>
+                        <li>
+                            <p><strong>Información y Confirmación Durante el Contacto:</strong> Una vez establecido el contacto, el agente debe seguir un script predefinido para:</p>
+                            <ul class="custom-black-bullet space-y-2 text-base pl-6">
+                                <li><p>Informar al usuario sobre su situación actual en la lista de espera (especificando el tipo de prestación, el establecimiento de referencia, etc.).</p></li>
+                                <li><p>Confirmar si el usuario aún requiere la prestación de salud por la cual se encuentra en espera.</p></li>
+                                <li><p>Solicitar y actualizar sus datos de contacto (múltiples números de teléfono, correos electrónicos, dirección).</p></li>
+                                <li><p>Informar sobre la importancia crítica de mantener sus datos actualizados y los canales disponibles para que el usuario pueda realizar estas actualizaciones (idealmente, a través del Compromiso de Vinculación y Comunicación - COVICOM).</p></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <p><strong>Registro Detallado de la Interacción:</strong> Es indispensable documentar cada intento de contacto, independientemente de su resultado. El registro debe incluir la fecha, hora, canal utilizado, el resultado del contacto (ej. contacto exitoso, no contesta, número erróneo, buzón de voz lleno) y cualquier información relevante recopilada o actualizada durante la interacción. Este registro es fundamental para la trazabilidad.</p>
+                        </li>
+                        <li>
+                            <p><strong>Derivación a Gestión de No Contactabilidad:</strong> Si, tras agotar los intentos definidos en el protocolo, no se logra ubicar al usuario, el caso debe ser derivado formalmente al subproceso de "Gestión de la No Contactabilidad" para aplicar las acciones correspondientes.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-[#FF6B6B] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">💡</span> Consideraciones Clave para una Vinculación Exitosa
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="proactividad">✅</span>
+                            <p><strong>Proactividad y Sistematización:</strong> La vinculación no debe ser una acción reactiva. Debe ser un proceso proactivo y sistemático, con protocolos claros y personal capacitado.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="COVICOM">📄</span>
+                            <p><strong>Uso del COVICOM:</strong> El Compromiso de Vinculación y Comunicación (COVICOM) es una herramienta esencial. Su uso formaliza el compromiso del usuario con el sistema de salud y reduce significativamente los problemas de contactabilidad en etapas posteriores.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="empatía">❤️</span>
+                            <p><strong>Enfoque Centrado en el Usuario:</strong> La comunicación debe ser clara, empática y respetuosa, considerando la situación del usuario y sus posibles inquietudes.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="monitoreo" class="section-card bg-monitoreo-color">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FED766]">📈</span> 2. Profundizando en el Monitoreo y Seguimiento: Acompañamiento Continuo
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    El <strong>monitoreo y seguimiento</strong> es un proceso vital de <strong>comunicación continua y bidireccional</strong> que se extiende a lo largo de todo el periodo en que el usuario permanece en una lista de espera. Su esencia radica en transformar la "espera" en un "acompañamiento", garantizando que el usuario se sienta informado, apoyado y que cualquier riesgo asociado a la dilación de la atención sea detectado y mitigado proactivamente.
+                </p>
+
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                    <span class="text-3xl mr-3">🎯</span> Objetivos Detallados del Monitoreo y Seguimiento
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="acompañamiento continuo">🫂</span>
+                            <p><strong>Asegurar Acompañamiento Continuo:</strong> Mantener al usuario informado sobre el estado general de su proceso de atención, incluyendo cambios en los tiempos de espera o novedades relevantes.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="resolución de dudas">❓</span>
+                            <p><strong>Proporcionar un Canal para Resolución de Dudas:</strong> Ofrecer un medio accesible para que el usuario pueda expresar inquietudes, preguntas o necesidades de información y recibir respuestas oportunas.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="recopilación de información relevante">📊</span>
+                            <p><strong>Recopilar Información Relevante:</strong> Obtener datos adicionales sobre la evolución del estado de salud del usuario, la aparición de nuevos síntomas o cambios en su situación personal que puedan influir en su atención.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="detección de riesgos">🚨</span>
+                            <p><strong>Detectar y Mitigar Riesgos:</strong> Identificar proactivamente posibles complicaciones, efectos adversos o la necesidad de una reevaluación médica que requieran una una intervención rápida.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">⚙️</span> Acciones Clave en el Proceso de Monitoreo y Seguimiento
+                </h3>
+                <ol class="list-decimal list-inside text-gray-700 leading-relaxed space-y-4 text-lg">
+                    <li>
+                        <p><strong>Contactos Periódicos Programados:</strong> Realizar comunicaciones de seguimiento con el usuario a intervalos regulares (ej. mensual, trimestral, según la criticidad de la prestación y la lista de espera). Estos contactos deben utilizar los canales de comunicación más adecuados al perfil y las preferencias del usuario (ej. llamadas, correos automatizados, SMS informativos).</p>
+                    </li>
+                    <li>
+                        <p><strong>Actualización de Información Clínica y Administrativa:</strong> Durante estos contactos, se debe informar al usuario sobre:</p>
+                        <ul class="custom-black-bullet ml-8 space-y-2 text-base">
+                            <li><p>Cualquier cambio en los tiempos de espera estimados para su prestación.</p></li>
+                            <li><p>Novedades relevantes sobre su patología o el servicio al que está esperando acceder.</p></li>
+                            <li><p>Requisitos adicionales, documentos o preparaciones que puedan ser necesarios para su próxima atención.</p></li>
+                            <li><p>Actualización de datos de contacto (si aplica).</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><strong>Implementación de Encuestas de Bienestar/Síntomas (Opcional):</strong> En ciertos casos, especialmente para esperas prolongadas o patologías específicas, se pueden utilizar encuestas breves y automatizadas (ej. vía SMS o correo electrónico) para monitorear el bienestar general del usuario, la aparición o empeoramiento de síntomas. Esto puede activar alertas que requieran una reevaluación clínica.</p>
+                    </li>
+                    <li>
+                        <p><strong>Registro y Trazabilidad Exhaustiva:</strong> Cada interacción, consulta del usuario, respuesta proporcionada y cualquier dato relevante recopilado debe ser meticulosamente registrado en el historial del usuario. Esto asegura la trazabilidad completa del proceso de monitoreo y permite una visión holística de la relación del usuario con el sistema.</p>
+                        </li>
+                    <li>
+                        <p><strong>Derivación Oportuna y Coordinada:</strong> Si durante el monitoreo se detecta un cambio significativo en la condición de salud del usuario, la aparición de síntomas de alarma o una necesidad urgente de atención, se debe activar de inmediato el protocolo de derivación al nivel de atención correspondiente, asegurando una respuesta rápida y coordinada.</p>
+                    </li>
+                </ol>
+
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">💡</span> Consideraciones Clave para un Monitoreo Efectivo
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="transformación de la espera">⏳➡️🫂</span>
+                            <p><strong>Transformación de la Espera:</strong> Este subproceso es fundamental para cambiar la percepción de la espera de una "lista pasiva" a un "acompañamiento activo y empático".</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="bidireccionalidad">↔️</span>
+                            <p><strong>Bidireccionalidad Esencial:</strong> La clave del éxito es que el usuario sienta que no solo recibe información, sino que también tiene la capacidad de contactar al sistema cuando lo necesite, estableciendo un diálogo genuino.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="personalización">👤</span>
+                            <p><strong>Personalización:</strong> Adaptar la frecuencia y el tipo de comunicación a la criticidad de la patología y las preferencias del usuario mejora la efectividad del monitoreo.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="agendamiento" class="section-card bg-light-blue">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#4ECDC4]">🗓️</span> 3. Profundizando en el Agendamiento y Cita: La Concreción de la Atención
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    El <strong>agendamiento y cita</strong> es el punto en el que la expectativa del usuario se concreta en una fecha y hora para recibir su prestación de salud. Su éxito es vital para la eficiencia del sistema, ya que busca asegurar la asistencia del usuario, optimizando el uso de los recursos asistenciales y minimizando las inasistencias.
+                </p>
+
+                <h3 class="text-2xl font-semibold text-[#4ECDC4] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">🎯</span> Objetivos Detallados del Agendamiento y Cita
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="coordinación eficaz">⏱️</span>
+                            <p><strong>Coordinar Citas de Manera Eficaz:</strong> Programar la prestación de salud de forma que sea conveniente para el usuario y, al mismo tiempo, maximice la eficiencia operativa del establecimiento.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="reducción de inasistencias">📉</span>
+                            <p><strong>Reducir Significativamente las Inasistencias:</strong> Implementar estrategias proactivas (recordatorios, confirmaciones) para asegurar que el usuario acuda a su cita programada.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="optimización de recursos">🏥</span>
+                            <p><strong>Optimizar la Utilización de Recursos Asistenciales:</strong> Garantizar que los cupos de atención sean aprovechados al máximo, disminuyendo las "horas perdidas" y mejorando la capacidad de respuesta del sistema.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-[#4ECDC4] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">⚙️</span> Acciones Clave en el Proceso de Agendamiento y Cita
+                </h3>
+                <ol class="list-decimal list-inside text-gray-700 leading-relaxed space-y-4 text-lg">
+                    <li>
+                        <p><strong>Oferta de Cita al Usuario:</strong> Contactar al usuario para ofrecerle una fecha y hora específicas para la realización de su prestación. Siempre que sea posible, se deben ofrecer múltiples opciones para acomodar la flexibilidad del usuario y mejorar la probabilidad de asistencia.</p>
+                    </li>
+                    <li>
+                        <p><strong>Confirmación Proactiva de Asistencia:</strong> Una vez que la cita ha sido agendada, es fundamental realizar recordatorios y solicitudes de confirmación de asistencia. Esto se puede hacer a través de los canales preferidos del usuario (ej. SMS, correo electrónico, llamada telefónica) con una antelación estratégica (ej. 48-72 horas antes de la cita).</p>
+                    </li>
+                    <li>
+                        <p><strong>Gestión Clara de Reprogramaciones y Cancelaciones:</strong> Establecer un proceso sencillo y accesible para que el usuario pueda reprogramar o cancelar su cita con la debida anticipación. Esto no solo mejora la experiencia del usuario, sino que también permite liberar el cupo para que otro paciente pueda utilizarlo, optimizando la capacidad del establecimiento.</p>
+                    </li>
+                    <li>
+                        <p><strong>Manejo Estandarizado de Inasistencias:</strong> En caso de que un usuario no asista a su cita, se debe seguir un flujo predefinido y claro:</p>
+                        <ul class="custom-black-bullet ml-8 space-y-2 text-base">
+                            <li><p><strong>Inasistencia Justificada:</strong> Si el usuario proporciona una justificación válida para su inasistencia, se evalúa la posibilidad y se procede a la reprogramación de la cita.</p></li>
+                            <li><p><strong>Inasistencia Injustificada o No Contacto:</strong> Si el usuario no justifica su inasistencia o no se logra establecer contacto con él, el caso puede ser egresado del registro de espera o su garantía GES exceptuada/cerrada. Esta acción debe realizarse de acuerdo con la normativa vigente y los intentos de contactabilidad documentados (ver sección de "Gestión de la No Contactabilidad").</p></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p><strong>Registro Detallado y Trazabilidad Total:</strong> Todos los aspectos del agendamiento (oferta, aceptación, recordatorios, confirmaciones, reprogramaciones, cancelaciones e inasistencias) deben ser meticulosamente registrados en el sistema. Esto incluye la hora, fecha, canal de comunicación utilizado y el resultado de cada interacción, asegurando una trazabilidad completa del proceso.</p>
+                    </li>
+                </ol>
+
+                <h3 class="text-2xl font-semibold text-[#4ECDC4] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">💡</span> Consideraciones Clave para un Agendamiento Eficaz
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="claridad de información">📝</span>
+                            <p><strong>Claridad de la Información:</strong> La información proporcionada sobre la cita (fecha, hora, lugar, requisitos previos, documentos a llevar) debe ser absolutamente clara y sin ambigüedades.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="flexibilidad">🔄</span>
+                            <p><strong>Flexibilidad y Accesibilidad:</strong> Ofrecer flexibilidad en el agendamiento y facilitar los procesos de reprogramación/cancelación puede mejorar significativamente la tasa de asistencia y la satisfacción del usuario.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="automatización">🤖</span>
+                            <p><strong>Uso de Automatización:</strong> Los recordatorios automatizados (SMS, correos) pueden ser muy efectivos para reducir inasistencias sin requerir recursos humanos constantes.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="post-atencion" class="section-card bg-light-green">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#45B7D1]">✅</span> 4. Profundizando en la Post Atención: Asegurando la Continuidad del Cuidado
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    El <strong>post atención</strong> es fundamental para extender la calidad del cuidado más allá de la consulta o procedimiento. Se enfoca en el <strong>seguimiento del usuario una vez que ha recibido la prestación de salud</strong>, con el objetivo de asegurar la continuidad de su cuidado, resolver cualquier duda que pueda surgir posteriormente y recopilar retroalimentación valiosa para la mejora continua del servicio.
+                </p>
+
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">🎯</span> Objetivos Detallados de la Post Atención
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="continuidad del cuidado">🩹</span>
+                            <p><strong>Asegurar la Continuidad del Cuidado:</strong> Verificar que el usuario ha comprendido y está siguiendo adecuadamente las indicaciones post-atención (ej. medicación, cuidados específicos, necesidad de próximas citas o exámenes).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="resolución de dudas">🤔</span>
+                            <p><strong>Proporcionar Resolución de Dudas Post-Atención:</strong> Ofrecer un canal accesible para que el usuario pueda plantear preguntas, inquietudes o la aparición de nuevos síntomas que surjan después de la consulta o procedimiento.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="medición de satisfacción">🌟</span>
+                            <p><strong>Medir la Satisfacción del Usuario:</strong> Recopilar la opinión del usuario sobre la calidad de la atención recibida, su experiencia general con el establecimiento y el proceso asistencial.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="identificación de complicaciones">⚠️</span>
+                            <p><strong>Identificar Complicaciones Tempranas:</strong> Detectar de manera proactiva posibles complicaciones, efectos adversos o la necesidad de una reevaluación médica que requieran una una intervención rápida.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">⚙️</span> Acciones Clave en el Proceso de Post Atención
+                </h3>
+                <ol class="list-decimal list-inside text-gray-700 leading-relaxed space-y-4 text-lg">
+                    <li>
+                        <p><strong>Contacto de Seguimiento Programado:</strong> Realizar un contacto proactivo con el usuario en un plazo definido después de la prestación. La temporalidad dependerá del tipo de atención (ej. 24-48 horas después para cirugías menores, o 7-14 días para consultas generales o inicio de tratamientos).</p>
+                    </li>
+                    <li>
+                        <p><strong>Verificación de Indicaciones y Adherencia:</strong> Durante el contacto, confirmar que el usuario ha comprendido completamente las indicaciones médicas, el plan de tratamiento y está siguiendo adecuadamente la medicación o los cuidados prescritos.</p>
+                    </li>
+                    <li>
+                        <p><strong>Resolución de Dudas y Recopilación de Feedback:</strong> Ofrecer un espacio abierto para que el usuario exprese cualquier pregunta, inquietud o reporte de síntomas que haya surgido después de la atención. Registrar este feedback es crucial para la mejora continua.</p>
+                    </li>
+                    <li>
+                        <p><strong>Gestión de Próximas Citas o Derivaciones:</strong> Si el plan de tratamiento lo requiere, coordinar nuevas citas de control, exámenes de seguimiento o derivaciones a otros especialistas, asegurando la continuidad del flujo asistencial.</p>
+                    </li>
+                    <li>
+                        <p><strong>Implementación de Encuestas de Satisfacción:</strong> Utilizar encuestas breves y accesibles (ej. vía SMS, correo electrónico, llamado automatizado) para evaluar la experiencia general del usuario con la atención recibida, incluyendo aspectos como la amabilidad del personal, la claridad de la información y los tiempos de espera.</p>
+                    </li>
+                    <li>
+                        <p><strong>Registro Detallado del Feedback y Acciones:</strong> Documentar meticulosamente el feedback del usuario, las dudas resueltas y cualquier acción de seguimiento realizada en su historial clínico.</p>
+                    </li>
+                    <li>
+                        <p><strong>Derivación a Servicios de Apoyo (si aplica):</strong> Si durante el seguimiento se detectan necesidades de apoyo adicionales (ej. social, psicológico, nutricional), derivar al usuario a los servicios pertinentes dentro o fuera de la red asistencial.</p>
+                    </li>
+                </ol>
+
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">💡</span> Consideraciones Clave para una Post Atención Óptima
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="vínculo fortalecido">🤝</span>
+                            <p><strong>Refuerzo del Vínculo:</strong> Este subproceso es clave para fortalecer la relación de confianza entre el usuario y el sistema de salud, demostrando un compromiso con su bienestar más allá de la atención puntual.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="adherencia al tratamiento">💊</span>
+                            <p><strong>Mejora de la Adherencia:</strong> El seguimiento activo puede mejorar significativamente la adherencia del usuario al tratamiento y a las indicaciones médicas, lo que impacta directamente en los resultados de salud.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mejora continua">📈</span>
+                            <p><strong>Fuente de Mejora Continua:</strong> La retroalimentación del usuario es una fuente invaluable de información para identificar áreas de mejora en la calidad de la atención y en los procesos asistenciales.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- FIN SECCIONES DE PROFUNDIZACIÓN -->
+
+        <section id="covicom" class="section-card bg-light-yellow">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FF6B6B]">🤝</span> 5. Compromiso de Vinculación y Comunicación (COVICOM)
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    La implementación del <strong>COVICOM</strong> (Compromiso de Vinculación y Comunicación), ya sea en formato físico o digital, es una herramienta esencial en la gestión de la contactabilidad. Su propósito principal es <strong>documentar de manera clara y explícita la información proporcionada al usuario o a su representante</strong>, al mismo tiempo que se formaliza su responsabilidad en la gestión de contacto. Esto fomenta el compromiso del usuario por mantener su información vigente y actualizada para el sistema de salud. Para garantizar su accesibilidad, el COVICOM debe estar disponible en diversos formatos y, cuando sea necesario, en diferentes traducciones.
+                </p>
+                <h3 class="text-2xl font-semibold text-[#FF6B6B] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">📝</span> Secciones Clave del COVICOM
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="sección informativa">ℹ️</span>
+                            <p><strong>Sección Informativa:</strong> Esta parte del COVICOM debe contener información crucial para el usuario, incluyendo:</p>
+                            <ul class="custom-black-bullet ml-8 space-y-2 text-base">
+                                <li><p>Detalles sobre los procesos de gestión de registros de espera.</p></li>
+                                <li><p>Tiempos estimados de espera para su prestación.</p></li>
+                                <li><p>Los canales de comunicación bidireccionales disponibles para interactuar con el establecimiento.</p></li>
+                                <li><p>Sus derechos y deberes como usuario, conforme a la Ley N° 20.584.</p></li>
+                                <li><p>Información sobre el uso y la protección de sus datos personales, en cumplimiento de la Ley N° 19.628.</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="sección de confirmación y consentimiento">✔️</span>
+                            <p><strong>Sección de Confirmación y Consentimiento:</strong> El registro del COVICOM (ya sea digital o físico digitalizado) debe dejar constancia de que el usuario ha sido debidamente informado y ha comprendido sus deberes. Al firmar o aceptar digitalmente, el usuario asume la responsabilidad de mantener actualizados sus datos de contacto y sus preferencias de comunicación. Asimismo, en esta sección se le informa sobre la posibilidad de recibir atención digital, como la telemedicina.</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-4 text-lg">
+                    Es importante destacar que el COVICOM debe registrarse <strong>individualmente por cada prestación en espera</strong> que tenga el usuario y debe quedar debidamente documentado en su historial clínico. La aplicación proactiva del COVICOM es una medida preventiva que permite reducir significativamente las acciones de contactabilidad requeridas en el futuro, especialmente en casos de no ubicabilidad.
+                </p>
+            </div>
+        </section>
+
+        <section id="exits" class="section-card bg-light-blue">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FED766]">🚪</span> 6. Salidas de Sistemas de Registros de Espera
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    Las <strong>salidas del registro de espera</strong> (conocidas como egresos, excepciones o cierres de garantías GES) comprenden una variedad de motivos, tanto administrativos como clínicos, que resultan en la finalización del proceso de espera de un usuario. Los antecedentes que justifican estas salidas pueden obtenerse a través de las diversas formas de contacto establecidas, siempre requiriendo una <strong>acreditación documental específica</strong> y garantizando la privacidad y protección de los datos del usuario.
+                </p>
+                
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 flex items-center">
+                    <span class="text-3xl mr-3">📋</span> 6.1. Lista de Espera No GES: Causales de Egreso
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    El egreso de la lista de espera No GES puede ocurrir por diversas causales definidas en la Norma Técnica N°118. Algunas de estas causales pueden ser validadas mediante el proceso de contactabilidad:
+                </p>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="verificación interna">🔎</span>
+                            <p><strong>Motivos que Requieren Verificación Interna:</strong></p>
+                            <ul class="custom-black-bullet ml-8 space-y-1 text-base">
+                                <li><p>Usuario ya atendido.</p></li>
+                                <li><p>Patología fuera de registro.</p></li>
+                                <li><p>Asegurador incorrecto.</p></li>
+                                <li><p>Fallecimiento del usuario.</p></li>
+                                <li><p>Cambio de condición clínica que hace la prestación innecesaria o contraindicada.</p></li>
+                                <li><p>No requiere la prestación.</p></li>
+                                <li><p>Requiere traslado a otro establecimiento.</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="contactabilidad directa">📞</span>
+                            <p><strong>Motivos Considerados por Contactabilidad Directa:</strong></p>
+                            <ul class="custom-black-bullet ml-8 space-y-1 text-base">
+                                <li><p>Usuario atendido en extrasistema (fuera de la red pública).</p></li>
+                                <li><p>Usuario rechaza la prestación ofrecida.</p></li>
+                                <li><p>Usuario se recuperó espontáneamente y ya no requiere la prestación.</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="no contactabilidad">🚫</span>
+                            <p><strong>Motivo por No Contactabilidad:</strong> No se logra establecer contacto con el usuario tras agotar todos los intentos definidos en el protocolo de gestión de no contactabilidad.</p></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">⚖️</span> 6.2. Procedimiento de Excepción y Cierre de Garantías GES
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    Los procedimientos de excepción y cierre de garantías GES están regulados por el Compendio de Normas de la Superintendencia de Salud y el Decreto N°53 del 2019.
+                </p>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2 flex items-center">
+                    <span class="text-2xl mr-2">⚠️</span> 6.2.1. Causales de Excepción de Garantías
+                </h4>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="verificación interna">⚙️</span>
+                            <p><strong>Motivos que Requieren Verificación Interna:</strong></p>
+                            <ul class="custom-black-bullet ml-8 space-y-1 text-base">
+                                <li><p>Imposibilidad de entregar la prestación por fuerza mayor.</p></li>
+                                <li><p>Cambio en el estado de salud del usuario (decisión del profesional tratante).</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="contactabilidad directa">🗣️</span>
+                            <p><strong>Motivos Considerados por Contactabilidad Directa:</strong></p>
+                            <ul class="custom-black-bullet ml-8 space-y-1 text-base">
+                                <li><p>Rechazo del usuario al prestador o a la prestación.</p></li>
+                                <li><p>Inasistencia injustificada a dos citaciones efectivas.</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="no contactabilidad">❌</span>
+                            <p><strong>Motivo por No Contactabilidad:</strong> "Contacto no corresponde" tras agotar todas las gestiones de citación efectiva.</p></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4 class="text-xl font-semibold text-gray-800 mb-2 mt-6 flex items-center">
+                    <span class="text-2xl mr-2">🛑</span> 6.2.2. Causales de Cierre de Garantías
+                </h4>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="verificación interna">📝</span>
+                            <p><strong>Motivos que Requieren Verificación Interna:</strong></p>
+                            <ul class="custom-black-bullet ml-8 space-y-1 text-base">
+                                <li><p>Cambio de sistema previsional del usuario.</p></li>
+                                <li><p>No cumple con los criterios de acceso a la garantía.</p></li>
+                                <li><p>Recibió la totalidad de las intervenciones garantizadas.</p></li>
+                                <li><p>Fallecimiento del usuario.</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="contactabilidad directa">💬</span>
+                            <p><strong>Motivos Considerados por Contactabilidad Directa:</strong></p>
+                            <ul class="custom-black-bullet ml-8 space-y-1 text-base">
+                                <li><p>Rechazo del usuario a continuar con la garantía.</p></li>
+                                <li><p>Inasistencia injustificada a tres citaciones efectivas.</p></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="no contactabilidad">⛔</span>
+                            <p><strong>Motivo por No Contactabilidad:</strong> "Contacto no corresponde" debido a datos de contacto incorrectos o desactualizados.</p></li>
+                        </ul>
+                    </li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">✔️</span> 6.3. Información Básica y Medios de Verificación para la Gestión de Salidas
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    Para registrar una salida de manera válida, se requiere una <strong>acreditación documental específica</strong>. Esta debe incluir:
+                </p>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="datos de contacto">🆔</span>
+                            <p><strong>Datos del Emisor y Receptor:</strong> Información clara de quién realizó el contacto y quién lo recibió.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="verificación de identidad">🔐</span>
+                            <p><strong>Verificación de Identidad:</strong> Mecanismos para asegurar que se está comunicando con el usuario correcto o su representante.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="confidencialidad">🔒</span>
+                            <p><strong>Garantía de Integridad, Autenticidad y Confidencialidad:</strong> Asegurar que el mensaje no ha sido alterado, que proviene de una fuente legítima y que la información sensible está protegida.</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-4 text-lg">
+                    Todos los datos y respaldos deben quedar <strong>anexados a la historia clínica</strong> o a los sistemas oficiales del establecimiento.
+                </p>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">📡</span> 6.4. Modalidades de Captura de Información para Salidas
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    La información necesaria para justificar una salida de registro puede obtenerse a través de diversas modalidades, cada una con requisitos específicos de respaldo verificable:
+                </p>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="concurrencia">🚶‍♀️</span>
+                            <p><strong>Concurrencia del Usuario:</strong> Interacción directa y presencial del usuario en el establecimiento.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="visita a domicilio">🏠</span>
+                            <p><strong>Visitas Domiciliarias (Institucional o Externalizada):</strong> Visita física al domicilio del usuario por personal autorizado.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="correo electrónico">📧</span>
+                            <p><strong>Correos Electrónicos:</strong> Comunicación electrónica desde casilla institucional (no verificable por sí solo para egreso, requiere complementos).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mensajería instantánea">💬</span>
+                            <p><strong>Mensajería Instantánea:</strong> Uso de plataformas de mensajería institucional (no verificable por sí solo para egreso, requiere complementos).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="llamada telefónica">📞</span>
+                            <p><strong>Llamadas Telefónicas:</strong> Contacto directo desde teléfono institucional (requiere bitácora, registro electrónico, transcripción o grabación).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="portal del paciente">💻</span>
+                            <p><strong>Portal Paciente:</strong> Sistema informático de salud con validación de identidad (requiere confirmación por email y llamadas telefónicas).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="llamados radiales">📻</span>
+                            <p><strong>Llamados Radiales:</strong> Convocatoria por radiodifusión (solo en casos excepcionales, con grabación o bitácora de la radio como respaldo).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="carta certificada">✉️</span>
+                            <p><strong>Carta Certificada:</strong> Envío postal con confirmación de entrega (específico para no contactabilidad sin COVICOM).</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="no-contactability" class="section-card bg-light-green">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#4ECDC4]">🚫</span> 7. Gestión de la No Contactabilidad: Cuando el Contacto no es Posible
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    Las acciones de salida de registro por falta de contactabilidad deben estar respaldadas por una <strong>gestión efectiva y documentada</strong> que considere múltiples intentos de comunicación a través de diversos canales. Si tras un plazo máximo definido no se logra establecer contacto con el usuario, el caso puede ser egresado del registro de espera o su garantía GES exceptuada/cerrada. Es crucial que el establecimiento disponga de un <strong>canal abierto y permanente</strong> (como un portal paciente) para que el usuario pueda contactarse proactivamente si lo desea.
+                </p>
+                
+                <h3 class="text-2xl font-semibold text-[#4ECDC4] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">✅</span> 7.1. Gestión de la No Contactabilidad con COVICOM Previo
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    Si el usuario cuenta con un <strong>COVICOM previo</strong> y debidamente registrado, el proceso de gestión de la no contactabilidad se simplifica, utilizando canales de comunicación masivos y personalizados. En este escenario, <strong>no existe la obligatoriedad</strong> de enviar cartas certificadas o realizar visitas domiciliarias de forma inicial.
+                </p>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="intentos múltiples">🔄</span>
+                            <p><strong>Múltiples Intentos:</strong> Se deben realizar múltiples intentos de contacto a través de diversos canales (correos electrónicos, mensajería instantánea, SMS, llamadas telefónicas) en días y horarios diferentes para maximizar la probabilidad de éxito.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="plazo">⏳</span>
+                            <p><strong>Plazo de 30 Días:</strong> Si después de 30 días desde el inicio de las gestiones de no contactabilidad no se logra establecer contacto, se procede al egreso del caso. Es importante notar que esta causal de egreso <strong>no aplica a las garantías GES</strong>.</p>
+                        </div>
+                    </li>
+                </ul>
+
+                <h3 class="text-2xl font-semibold text-[#4ECDC4] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">❌</span> 7.2. Gestión de la No Contactabilidad sin COVICOM Previo
+                </h3>
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    Cuando no se ha efectuado el <strong>COVICOM</strong> con el usuario, el establecimiento debe implementar medidas de contacto de <strong>mayor costo y esfuerzo</strong> en un plazo definido. Adicional a los medios de comunicación mencionados anteriormente, se deben incluir <strong>al menos uno de los siguientes</strong> canales de mayor impacto:
+                </p>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="visita domiciliaria">🏠</span>
+                            <p><strong>Visita Domiciliaria Institucional o Externalizada:</strong> Un funcionario autorizado o personal externo acude al domicilio del usuario para verificar su residencia y entregar la información pertinente.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="carta certificada">✉️</span>
+                            <p><strong>Carta Certificada o Entrega de Documento de Visita:</strong> Envío de un correo certificado con instrucciones claras para que el usuario se contacte con el establecimiento, o la entrega de un documento que certifique la visita domiciliaria.</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="text-gray-700 leading-relaxed mt-4 text-lg">
+                    Similar al proceso con COVICOM, si después de <strong>30 días</strong> de iniciado este segundo proceso de gestión de no contactabilidad no se obtiene contacto, se procede al egreso del caso. Es crucial entender que este flujo es el <strong>único aplicable</strong> para la gestión de no contactabilidad en personas con <strong>garantías GES</strong>.
+                </p>
+            </div>
+        </section>
+
+        <section id="channels-description" class="section-card bg-light-orange">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#45B7D1]">💬</span> 8. Anexos: Descripción Detallada de Canales de Comunicación
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    La evaluación de cada forma de contacto es crucial para diseñar estrategias eficientes de contactabilidad. Este análisis considera las ventajas y desafíos de cada modalidad para identificar la opción más adecuada en cada situación.
+                </p>
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">🚶</span> 8.1. Canales Presenciales: Interacción Directa
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 mb-6 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="concurrencia">🚶‍♀️</span>
+                            <p><strong>Concurrencia del usuario:</strong> El usuario se presenta en un punto de atención (OIRS, ventanillas, unidades de admisión, Postas Rurales). Permite <strong>alta personalización y bidireccionalidad</strong>.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="visita a domicilio">🏠</span>
+                            <p><strong>Visita domiciliaria institucional:</strong> Visita física de un funcionario de la red asistencial al domicilio del usuario. Ofrece <strong>alta eficiencia en la entrega de mensajes</strong>, pero su masividad es limitada.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="visita a domicilio">🏠</span>
+                            <p><strong>Visita domiciliaria externalizada:</strong> Visita física de personal externo al domicilio. Está limitada a funciones administrativas básicas y <strong>no permite acceso a datos sensibles</strong>.</p>
+                        </div>
+                    </li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">📞</span> 8.2. Canales a Distancia: Conectividad Remota
+                </h3>
+                <ul class="list-none text-gray-700 leading-relaxed space-y-3 mb-6 text-lg">
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="llamado telefónico">📞</span>
+                            <p><strong>Llamado telefónico:</strong> Contacto directo con el usuario o responsable mediante llamada de un ejecutivo. Es <strong>muy efectivo y personalizado</strong>, bidireccional, pero consume recursos humanos significativos.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mensajería instantánea">💬</span>
+                            <p><strong>Mensajería instantánea:</strong> Comunicación en tiempo real (WhatsApp, Telegram). Permite <strong>interacción directa con personal capacitado</strong>, pero <strong>no es para datos sensibles</strong> (redirige a portal paciente).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="correo electrónico">📧</span>
+                            <p><strong>Correo electrónico:</strong> Envío y recepción de información a un grupo específico. Comunicación directa <strong>asincrónica</strong>, <strong>no para datos sensibles</strong> (redirige a portal paciente).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mensajería de texto">📱</span>
+                            <p><strong>Mensajería de texto SMS:</strong> Mensajes breves entre teléfonos móviles. Interacción directa, <strong>no para datos sensibles</strong> (redirige a portal paciente).</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="carta certificada">✉️</span>
+                            <p><strong>Carta certificada:</strong> Envío postal de documentos importantes con confirmación de entrega. Ofrece <strong>alta eficiencia en la entrega</strong>, pero su masividad es limitada por costos y tiempos.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mensajería de texto por IA">🤖📱</span>
+                            <p><strong>Mensajería de texto SMS por IA:</strong> Mensajes de texto breves masivos y automatizados. Ofrece <strong>alta eficiencia y bajo costo</strong>, pero con personalización y bidireccionalidad limitadas.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="correo electrónico por IA">🤖📧</span>
+                            <p><strong>Correo electrónico por IA:</strong> Envío de información detallada a gran número de usuarios de forma automatizada. Permite <strong>personalizar mensajes</strong>, <strong>no para datos sensibles</strong>.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="mensajería instantánea por IA">🤖💬</span>
+                            <p><strong>Mensajería Instantánea por IA:</strong> Mensajes personalizados y automatizados mediante IA. Ofrece <strong>alta masividad y personalización</strong>, <strong>no para datos sensibles</strong>.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="llamado telefónico por IA">🤖📞</span>
+                            <p><strong>Llamado telefónico por IA:</strong> Sistemas automatizados para realizar llamadas. Permite <strong>personalización de mensajes</strong> y gestión de respuestas básicas.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="portal paciente">🖥️</span>
+                            <p><strong>Portal paciente:</strong> Espacio digital seguro y confidencial para acceder y compartir información de salud. Ofrece <strong>alta personalización y bidireccionalidad asincrónica</strong>.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="información radial">📻</span>
+                            <p><strong>Información por vía radial:</strong> Convocatoria radial (difusión local). Utilizado en <strong>casos excepcionales</strong> y territorios de difícil acceso.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="videollamadas">📹</span>
+                            <p><strong>Videollamadas:</strong> Interacción cara a cara virtual. Ofrece <strong>comodidad no presencial</strong> con alto nivel de personalización y bidireccionalidad.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="campañas masivas">📢</span>
+                            <p><strong>Campañas masivas de información:</strong> Difusión de información general no personalizada a través de diversos medios publicitarios.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="icon-text-pair">
+                            <span role="img" aria-label="redes sociales">📱</span>
+                            <p><strong>Redes sociales:</strong> Facilitar interacción e intercambio de información. Su propósito principal es <strong>captar atención y educar a la comunidad</strong>, así como responder consultas públicas.</p>
+                        </div>
+                    </li>
+                </ul>
+                <h3 class="text-2xl font-semibold text-[#45B7D1] mb-4 mt-8 flex items-center">
+                    <span class="text-3xl mr-3">🤖</span> 8.3. Sobre los Modelos de Inteligencia Artificial (IA)
+                </h3>
+                <p class="text-gray-700 leading-relaxed text-lg">
+                    Los modelos de IA implementados en canales automatizados deben contar con <strong>condiciones contractuales claras</strong> que garanticen una respuesta oportuna y eficaz ante incidentes (fallos, brechas de seguridad). Es crucial incorporar medidas robustas para mitigar los riesgos asociados al procesamiento masivo de datos, lo que incluye un <strong>monitoreo continuo</strong> y <strong>pruebas de resiliencia</strong> periódicas. Además, es imperativo que estos sistemas cumplan estrictamente con la <strong>Circular N° 711 de diciembre de 2023 de la SEGPRES</strong>, la cual regula el uso de la Inteligencia Artificial en el sector público.
+                </p>
+            </div>
+        </section>
+
+        <section id="channels-matrix" class="section-card bg-light-pink">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FED766]">📊</span> 9. Anexo N°3: Matriz de Evaluación de Canales de Comunicación
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-6 text-lg">
+                    Esta matriz evalúa las diferentes formas de gestión del contacto según diversos factores clave para determinar su idoneidad en distintas situaciones. Es una herramienta fundamental para la toma de decisiones estratégicas en la implementación de canales de comunicación.
+                </p>
+                <div class="table-container shadow-md rounded-lg">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Consideraciones</th>
+                                <th>Concurrencia del Usuario</th>
+                                <th>Visita Domiciliaria Institucional</th>
+                                <th>Visita Domiciliaria Externalizada</th>
+                                <th>Llamado Telefónico Directo</th>
+                                <th>Carta Certificada</th>
+                                <th>Mensajería de Texto (IA)</th>
+                                <th>Correo Electrónico (IA)</th>
+                                <th>Correo Electrónico Directo</th>
+                                <th>Mensajería Instantánea (IA)</th>
+                                <th>Mensajería Instantánea Directa</th>
+                                <th>Llamado Telefónico (IA)</th>
+                                <th>Portal Paciente</th>
+                                <th>Gestión de Caso del Usuario</th>
+                                <th>Vía Radial</th>
+                                <th>Campañas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Universo Objetivo</td>
+                                <td>Segmentación Específica</td>
+                                <td>Segmentación Diversificada</td>
+                                <td>Segmentación Diversificada</td>
+                                <td>Segmentación Específica</td>
+                                <td>Segmentación Diversificada</td>
+                                <td>Masiva</td>
+                                <td>Masiva</td>
+                                <td>Segmentación Específica</td>
+                                <td>Masiva</td>
+                                <td>Segmentación Específica</td>
+                                <td>Masiva</td>
+                                <td>Masiva</td>
+                                <td>Segmentación Específica</td>
+                                <td>Masiva</td>
+                                <td>Masiva</td>
+                            </tr>
+                            <tr>
+                                <td>Costo por Interacción</td>
+                                <td>Medio</td>
+                                <td>Alto</td>
+                                <td>Medio</td>
+                                <td>Medio</td>
+                                <td>Alto</td>
+                                <td>Bajo</td>
+                                <td>Bajo</td>
+                                <td>Medio</td>
+                                <td>Bajo</td>
+                                <td>Medio</td>
+                                <td>Bajo</td>
+                                <td>Bajo</td>
+                                <td>Alto</td>
+                                <td>Alto</td>
+                                <td>Bajo</td>
+                            </tr>
+                            <tr>
+                                <td>Dependiente de RRHH</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Tipo de Comunicación (Emisor/Receptor)</td>
+                                <td>Bidireccional Clínico Administrativo</td>
+                                <td>Bidireccional Administrativa</td>
+                                <td>Unidireccional</td>
+                                <td>Bidireccional Clínico Administrativo</td>
+                                <td>Unidireccional</td>
+                                <td>Unidireccional</td>
+                                <td>Unidireccional</td>
+                                <td>Bidireccional Clínico Administrativo</td>
+                                <td>Bidireccional</td>
+                                <td>Bidireccional Clínico Administrativo</td>
+                                <td>Unidireccional</td>
+                                <td>Bidireccional Administrativa</td>
+                                <td>Bidireccional Clínico Administrativo</td>
+                                <td>Unidireccional</td>
+                                <td>Unidireccional</td>
+                            </tr>
+                            <tr>
+                                <td>Tipo de Temporalidad en Comunicación</td>
+                                <td>Sincrónico</td>
+                                <td>Sincrónico</td>
+                                <td>Sincrónico</td>
+                                <td>Sincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Sincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Sincrónico</td>
+                                <td>Asincrónico</td>
+                                <td>Asincrónico</td>
+                            </tr>
+                            <tr>
+                                <td>Oportunidad Permanente de Información Bidireccional</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Registros Verificables del Contacto</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>Personalización de la Atención</td>
+                                <td>Alta</td>
+                                <td>Alta</td>
+                                <td>Alta</td>
+                                <td>Alta</td>
+                                <td>Baja</td>
+                                <td>Baja</td>
+                                <td>Baja</td>
+                                <td>Alta</td>
+                                <td>Baja</td>
+                                <td>Alta</td>
+                                <td>Baja</td>
+                                <td>Alta</td>
+                                <td>Alta</td>
+                                <td>Baja</td>
+                                <td>Baja</td>
+                            </tr>
+                            <tr>
+                                <td>Administración de Confidencialidad de Datos</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>No Aplica</td>
+                            </tr>
+                            <tr>
+                                <td>Atributo para Egreso/Excepción/Cierre de Garantías (según normativa GES)</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>No</td>
+                                <td>Sí</td>
+                                <td>Sí</td>
+                                <td>Solo en Agendas y Citas Extraordinarias</td>
+                                <td>No</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="scripts" class="section-card bg-light-green">
+            <div class="accordion-header">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 flex items-center">
+                    <span class="text-5xl mr-4 text-[#FF6B6B]">✍️</span> 10. Anexo N°4: Scripts de Contactabilidad (Ejemplos)
+                </h2>
+                <span class="accordion-icon">&#9660;</span>
+            </div>
+            <div class="accordion-content collapsed">
+                <p class="text-gray-700 leading-relaxed mb-4 text-lg">
+                    El documento original proporciona scripts detallados para cada subproceso de contactabilidad y canal de comunicación. A continuación, se presentan ejemplos de los scripts de vinculación para ilustrar su estructura y contenido, demostrando cómo se aplica la orientación en la práctica.
+                </p>
+                <h3 class="text-2xl font-semibold text-[#FF6B6B] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">📧</span> SCRIPT 1.1: VINCULACIÓN POR CORREO ELECTRÓNICO IA
+                </h3>
+                <div class="bg-gray-50 p-6 rounded-md shadow-sm mb-6 border border-gray-200">
+                    <p class="font-bold text-lg mb-2">ASUNTO DEL CORREO:</p>
+                    <p class="text-gray-700 text-base">“Información importante sobre su atención de salud en el (Nombre del establecimiento)”</p>
+                    <p class="font-bold text-lg mt-4 mb-2">CUERPO DEL CORREO:</p>
+                    <p class="text-gray-700 text-base">“Estimado/a Sr./Sra. (Nombre completo del usuario del registro de espera o nombre social). Nos ponemos en contacto desde (Nombre del establecimiento) para actualizar su información en nuestro sistema. Para ello, necesitamos que: Confirme si aún presenta la necesidad de salud por la cual está esperando ser atendido/a. Verifique y actualice sus datos de contacto. Para actualizar su información, por favor utilice uno de los siguientes canales institucionales: Portal paciente: [enlace, forma de ingreso, información disponible] Teléfono: [número de teléfono y horarios] Atención presencial: [ubicación y horario de atención presencial] Su pronta respuesta nos permitirá gestionar adecuadamente su solicitud y brindarle la mejor atención posible. Si tiene alguna pregunta o necesita asistencia, puede comunicarse con el (Nombre del establecimiento) a través de los siguientes canales: Teléfono: [número de teléfono y horarios] Correo electrónico: [correo electrónico] Mensajería instantánea: [plataforma de mensajería] Atención presencial: [ubicación y horario de atención presencial] Portal paciente: [enlace, forma de ingreso, información disponible] Agradecemos su atención y cooperación para mantener su información actualizada. Atentamente, [Nombre ejecutivo; asistente virtual] [Cargo; Unidad] [Nombre del establecimiento] IMPORTANTE Esta casilla de correo electrónico no está habilitada para recibir mensajes. Por favor, NO responda este correo. Para más información, por favor ingrese al portal paciente en https://www.spanishdict.com/translate/del%20portal o utilice los canales de contacto mencionados anteriormente. Este mensaje es enviado desde una cuenta oficial de (Nombre del establecimiento). En caso de que esta comunicación no esté dirigida a usted o no conozca a (Nombre completo del usuario del registro de espera o nombre social) solo ignore este mensaje”</p>
+                </div>
+
+                <h3 class="text-2xl font-semibold text-[#FF6B6B] mb-4 flex items-center">
+                    <span class="text-3xl mr-3">📞</span> SCRIPT 1.7: VINCULACIÓN POR LLAMADO TELEFÓNICO GESTIONADO POR UNA PERSONA
+                </h3>
+                <div class="bg-gray-50 p-6 rounded-md shadow-sm border border-gray-200">
+                    <p class="font-bold text-lg mb-2">A. PRESENTACIÓN:</p>
+                    <p class="text-gray-700 text-base">“Buenos días / tardes, le llamo desde (Nombre del establecimiento), mi nombre es (Nombre del agente)”.</p>
+                    <p class="font-bold text-lg mt-4 mb-2">B. IDENTIFICACIÓN DEL USUARIO:</p>
+                    <p class="text-gray-700 text-base">“Hablo con el/la Sr./Sra. (Nombre completo del usuario del registro de espera o nombre social)”</p>
+                    <p class="font-bold text-lg mt-4 mb-2">C. MOTIVO DEL CONTACTO: CONTACTO CON USUARIO:</p>
+                    <p class="text-gray-700 text-base">“Sr./Sra. (Nombre usuario o nombre social), usted se encuentra en el registro de personas que esperan una prestación de salud de (detalle de la prestación en espera). La razón de este contacto es para confirmar si aún presenta su necesidad de salud, además de actualizar sus datos de contacto en el caso de ser necesario. Lo anterior, permitirá avanzar en la gestión de la resolución de su necesidad de salud, si usted aún la requiere. Antes de continuar, le informo que esta llamada será grabada. No solicitaremos que nos indique ningún dato de su cuenta bancaria, ni tampoco un número o código que podría llegar a su teléfono. Si tiene consultas o dudas, puede visitar el sitio web [indicar portal paciente o página institucional] o llamar al [indicar teléfono institucional]. Sr./Sra. (Nombre usuario o nombre social), ¿usted está en espera de una prestación de salud (detalle de la prestación en espera) en el establecimiento (Nombre del establecimiento)?”</p>
+                    
+                    <p class="font-bold text-lg mt-4 mb-2">D. OPCIONES DE RESPUESTA Y FLUJOS:</p>
+                    <div class="script-flow-content">
+                        <ol class="text-gray-700 leading-relaxed space-y-4 text-lg">
+                            <li>
+                                <p class="font-semibold text-base mb-2">Si el usuario confirma que SÍ está en espera:</p>
+                                <ul class="text-gray-700 text-base mb-2">
+                                    <li><p><strong>Agente:</strong> "Gracias por la confirmación. Para continuar, ¿podría indicarme si sus datos de contacto actuales (teléfono: [número], correo: [correo], dirección: [dirección]) son correctos o si necesita actualizar alguno de ellos?"</p></li>
+                                    <ul class="text-gray-700 text-sm mb-2">
+                                        <li><p><strong>Si el usuario confirma datos correctos:</strong></p>
+                                            <p><strong>Agente:</strong> "Perfecto, mantendremos sus datos actuales. Le recordamos que es importante que nos notifique cualquier cambio para asegurar la continuidad de su atención. ¿Tiene alguna duda sobre su prestación o el proceso de espera?"</p>
+                                            <ul class="text-gray-700 text-xs">
+                                                <li><p>Si tiene dudas: Resolverlas, registrar en el sistema.</p></li>
+                                                <li><p>Si no tiene dudas: Agradecer y finalizar llamada. Registrar interacción.</p></li>
+                                            </ul>
+                                        </li>
+                                        <li><p><strong>Si el usuario necesita actualizar datos:</strong></p>
+                                            <p><strong>Agente:</strong> "Entendido. Por favor, indíqueme los datos que desea actualizar."</p>
+                                            <ul class="text-gray-700 text-xs">
+                                                <li><p>Actualizar datos en el sistema.</p></li>
+                                                <li><p><strong>Agente:</strong> "Sus datos han sido actualizados. Le recordamos que es importante que nos notifique cualquier cambio para asegurar la continuidad de su atención. ¿Tiene alguna duda sobre su prestación o el proceso de espera?"</p></li>
+                                                <li><p>Si tiene dudas: Resolverlas, registrar en el sistema.</p></li>
+                                                <li><p>Si no tiene dudas: Agradecer y finalizar llamada. Registrar interacción.</p></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                            <li>
+                                <p class="font-semibold text-base mb-2">Si el usuario indica que NO está en espera o ya fue atendido:</p>
+                                <ul class="text-gray-700 text-base mb-2">
+                                    <li><p><strong>Agente:</strong> "Comprendo. ¿Podría indicarme si ya recibió la prestación en otro establecimiento o si su necesidad de salud ya fue resuelta?"</p></li>
+                                    <ul class="text-gray-700 text-sm mb-2">
+                                        <li><p><strong>Si ya fue atendido (extrasistema o resuelta):</strong></p>
+                                            <p><strong>Agente:</strong> "Gracias por informarnos. Procederemos a egresar su caso del registro de espera con la causal 'Atendido en extrasistema' o 'Necesidad resuelta'. Esto nos ayuda a optimizar la gestión de listas de espera. ¿Tiene alguna otra consulta?"</p>
+                                            <ul class="text-gray-700 text-xs">
+                                                <li><p>Si tiene consultas: Resolverlas, registrar en el sistema.</p></li>
+                                                <li><p>Si no tiene consultas: Agradecer y finalizar llamada. Registrar egreso en el sistema.</p></li>
+                                            </ul>
+                                        </li>
+                                        <li><p><strong>Si rechaza la prestación:</strong></p>
+                                            <p><strong>Agente:</strong> "Entendido. Si en el futuro vuelve a requerir esta prestación, deberá iniciar el proceso nuevamente. Procederemos a egresar su caso con la causal 'Rechazo de prestación'. ¿Tiene alguna otra consulta?"</p>
+                                            <ul class="text-gray-700 text-xs">
+                                                <li><p>Si tiene consultas: Resolverlas, registrar en el sistema.</p></li>
+                                                <li><p>Si no tiene consultas: Agradecer y finalizar llamada. Registrar egreso en el sistema.</p></li>
+                                            </ul>
+                                        </li>
+                                        <li><p><strong>Si no reconoce la prestación o es un error:</strong></p>
+                                            <p><strong>Agente:</strong> "Lamento la confusión. Validaremos la información en nuestro sistema y corregiremos cualquier error para evitar futuros contactos indebidos. ¿Podría confirmarme su RUN para verificar?"</p>
+                                            <ul class="text-gray-700 text-xs">
+                                                <li><p>Verificar RUN y corregir en sistema.</p></li>
+                                                <li><p><strong>Agente:</strong> "Gracias por su ayuda. Hemos corregido la información. Disculpe las molestias. ¿Tiene alguna otra consulta?"</p></li>
+                                                <li><p>Si tiene consultas: Resolverlas, registrar en el sistema.</p></li>
+                                                <li><p>Si no tiene consultas: Agradecer y finalizar llamada. Registrar corrección.</p></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                            <li>
+                                <p class="font-semibold text-base mb-2">Si el usuario no es el titular o es un familiar:</p>
+                                <ul class="text-gray-700 text-base mb-2">
+                                    <li><p><strong>Agente:</strong> "Comprendo. ¿Podría indicarme su relación con el/la Sr./Sra. (Nombre completo del usuario)?"</p></li>
+                                    <ul class="text-gray-700 text-sm mb-2">
+                                        <li><p><strong>Si es familiar directo y autorizado:</strong></p>
+                                            <p><strong>Agente:</strong> "Gracias. Para poder entregarle información, necesito confirmar algunos datos de seguridad. ¿Podría indicarme... [preguntar datos de verificación, ej. fecha de nacimiento del usuario, RUN de familiar, etc.]?"</p>
+                                            <ul class="text-gray-700 text-xs">
+                                                <li><p>Si verifica: Proceder con el flujo del punto 1 (si el usuario aún está en espera) o punto 2 (si ya fue atendido/rechaza).</p></li>
+                                                <li><p>Si no verifica:</p>
+                                                    <p><strong>Agente:</strong> "Lamento, por motivos de confidencialidad, no puedo entregar información a menos que se verifique la identidad. Le pedimos que el/la Sr./Sra. (Nombre completo del usuario) se contacte directamente con nosotros a través de los canales institucionales."</p>
+                                                    <li><p>Agradecer y finalizar llamada. Registrar intento de contacto y motivo.</p></li>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li><p><strong>Si no es familiar directo o no autorizado:</strong></p>
+                                            <p><strong>Agente:</strong> "Lamento, por motivos de confidencialidad, no puedo entregar información a terceros no autorizados. Le pedimos que el/la Sr./Sra. (Nombre completo del usuario) se contacte directamente con nosotros a través de los canales institucionales."</p>
+                                            <li><p>Agradecer y finalizar llamada. Registrar intento de contacto y motivo.</p></li>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </li>
+                            <li>
+                                <p class="font-semibold text-base mb-2">Si el número no corresponde al usuario (número erróneo):</p>
+                                <ul class="text-gray-700 text-base mb-2">
+                                    <li><p><strong>Agente:</strong> "Disculpe las molestias, parece que hemos llamado a un número equivocado. Agradecemos su información. Finalizaré la llamada y actualizaremos nuestro registro."</p></li>
+                                    <ul class="text-gray-700 text-sm mb-2">
+                                        <li><p>Agradecer y finalizar llamada. Registrar el número como erróneo en el sistema y derivar el caso a "Gestión de No Contactabilidad" si no hay otros datos de contacto válidos.</p></li>
+                                    </ul>
+                                </ul>
+                            </li>
+                            <li>
+                                <p class="font-semibold text-base mb-2">Si no hay respuesta (buzón de voz, no contesta, etc.):</p>
+                                <ul class="text-gray-700 text-base mb-2">
+                                    <li><p><strong>Agente:</strong> (Si es buzón de voz) "Hola, le llamamos desde (Nombre del establecimiento) para informarle sobre su prestación de salud de (detalle de la prestación en espera). Por favor, contáctenos a través de [indicar portal paciente o número de teléfono institucional] para actualizar su información. Gracias."</p></li>
+                                    <ul class="text-gray-700 text-sm mb-2">
+                                        <li><p>Registrar intento de contacto y resultado (ej. "buzón de voz", "no contesta").</p></li>
+                                        <li><p>Programar nuevos intentos de contacto según protocolo de "Gestión de No Contactabilidad".</p></li>
+                                    </ul>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+            accordionHeaders.forEach(header => {
+                const content = header.nextElementSibling; // Get the accordion-content div
+                // Initially, all sections will be collapsed by default due to the 'collapsed' class in HTML
+                // We only need to toggle the class on click.
+                
+                header.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    content.classList.toggle('collapsed');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
